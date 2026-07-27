@@ -111,6 +111,12 @@ a:hover {
   column-gap: 12px;
 }
 
+@media (max-width: 600px) {
+  .gallery-grid {
+    columns: 2;
+  }
+}
+
 .gallery-grid figure {
   cursor: pointer;
   margin: 0 0 12px;

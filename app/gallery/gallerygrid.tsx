@@ -5,6 +5,7 @@ import Image from "next/image";
 
 interface Photo {
     src: string;
+    thumbSrc: string;
     alt: string;
     width: number;
     height: number;
@@ -30,7 +31,7 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
                 {photos.map((photo, index) => (
                     <figure key={photo.src} onClick={() =>setSelectedIndex(index)}>
                         <Image
-                            src={photo.src}
+                            src={photo.thumbSrc}
                             alt={photo.alt}
                             width={photo.width}
                             height={photo.height}

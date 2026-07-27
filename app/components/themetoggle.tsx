@@ -3,15 +3,25 @@
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-    const [isDark, setIsDark] = useState(false);
+      const [isDark, setIsDark] = useState(false);
 
-    useEffect(() => {
-        const saved = localStorage.getItem("theme");
-        const isDarkSaved = saved === "dark";
-        setIsDark(isDarkSaved);
-        document.documentElement.classList.toggle("dark", isDarkSaved);
-    }, []);
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
 
+    let initialIsDark: boolean;
+    if (saved === "dark" || saved === "light") {
+      // User has an explicit saved preference — respect it.
+      initialIsDark = saved === "dark";
+    } else {
+      // No saved preference yet — fall back to the OS setting.
+      initialIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
+    setIsDark(initialIsDark);
+    document.documentElement.classList.toggle("dark", initialIsDark);
+  }, []);
+
+  
     function toggle() {
         const next = !isDark;
         setIsDark(next);
