@@ -1,26 +1,165 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  
+  --bg: #f8f9fa;
+  --text: #1a1c1e;
+  --text-muted: #666666;
+  --border: #e0e0e0;
+  --link-hover: #6791c9; /* change this later */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.dark {
+  --bg: #141413;
+  --text: #e8e6e3;
+  --text-muted: #a0a0a0;
+  --border: #2a2a2a;
+  --link-hover: #bc83e3;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--text);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+/* nav stuff */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+.nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--link-hover);
+}
+
+.theme-toggle svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.theme-toggle {
+  display: flex;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  font: inherit;
+}
+
+.theme-toggle:hover {
+  color: var(--link-hover);
+}
+
+/* footer stuff */
+
+.footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1 px solid var(--border);
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* home page stuff */
+.intro {
+  line-height: 1.8;
+}
+
+/* gallery page stuff */
+
+.gallery-grid {
+  columns: 4;
+  column-gap: 12px;
+}
+
+.gallery-grid figure {
+  cursor: pointer;
+  margin: 0 0 12px;
+  break-inside: avoid;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+
+.lightbox-prev,
+.lightbox-next {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 0 24px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
